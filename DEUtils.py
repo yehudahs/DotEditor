@@ -279,8 +279,8 @@ def normalize_imglist(image_list):
             pos_x = int((max_w-w)/2)
             pos_y = int((max_h-h)/2)
     
-            new_img = wx.EmptyImage(max_w, max_h)
-            new_img.Clear(0xff)
+            new_img = wx.Image(max_w, max_h)
+            new_img.Clear()
             new_img.Paste(img, pos_x, pos_y)
             il.Add(new_img.ConvertToBitmap())
     
@@ -300,5 +300,4 @@ ABCD"
     
         
     #print gen_CB_palette_img('PuBu')
-    
     

@@ -20,7 +20,7 @@ class MainFrame ( wx.Frame ):
 	def __init__( self, parent ):
 		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"DotEditor", pos = wx.DefaultPosition, size = wx.Size( 942,688 ), style = wx.DEFAULT_FRAME_STYLE )
 		
-		self.SetSizeHintsSz( wx.Size( 800,600 ), wx.DefaultSize )
+		self.SetSizeHints( wx.Size( 800,600 ), wx.DefaultSize )
 		self.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), 70, 90, 90, False, wx.EmptyString ) )
 		self.SetForegroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_WINDOW ) )
 		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_BTNFACE ) )
@@ -43,50 +43,50 @@ class MainFrame ( wx.Frame ):
 		fgSizer15.Add( self.m_panel17, 1, wx.EXPAND |wx.ALL, 0 )
 		
 		
-		fgSizer15.AddSpacer( ( 8, 30), 1, wx.EXPAND, 5 )
+		fgSizer15.Add( ( 8, 30), 1, wx.EXPAND, 5 )
 		
 		self.m_bpButton_new = wx.BitmapButton( self.m_panel16, wx.ID_ANY, wx.NullBitmap, wx.DefaultPosition, wx.Size( 50,-1 ), wx.BU_AUTODRAW|wx.NO_BORDER )
 		
 		self.m_bpButton_new.SetBitmapFocus( wx.NullBitmap )
-		self.m_bpButton_new.SetBitmapHover( wx.NullBitmap )
+		# self.m_bpButton_new.SetBitmapHover( wx.NullBitmap )
 		self.m_bpButton_new.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_BTNFACE ) )
-		self.m_bpButton_new.SetToolTipString( u"Create a new Graph" )
+		# self.m_bpButton_new.SetToolTipString( u"Create a new Graph" )
 		
 		fgSizer15.Add( self.m_bpButton_new, 0, wx.ALIGN_CENTER|wx.ALL|wx.EXPAND, 5 )
 		
 		self.m_bpButton_open = wx.BitmapButton( self.m_panel16, wx.ID_ANY, wx.NullBitmap, wx.DefaultPosition, wx.Size( 50,-1 ), wx.BU_AUTODRAW|wx.NO_BORDER )
 		
 		self.m_bpButton_open.SetBitmapFocus( wx.NullBitmap )
-		self.m_bpButton_open.SetBitmapHover( wx.NullBitmap )
+		# self.m_bpButton_open.SetBitmapHover( wx.NullBitmap )
 		self.m_bpButton_open.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_BTNFACE ) )
-		self.m_bpButton_open.SetToolTipString( u"Open a existed Graph file" )
+		# self.m_bpButton_open.SetToolTipString( u"Open a existed Graph file" )
 		
 		fgSizer15.Add( self.m_bpButton_open, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
 		
 		self.m_bpButton_save = wx.BitmapButton( self.m_panel16, wx.ID_ANY, wx.NullBitmap, wx.DefaultPosition, wx.Size( 50,-1 ), wx.BU_AUTODRAW|wx.NO_BORDER )
 		
 		self.m_bpButton_save.SetBitmapFocus( wx.NullBitmap )
-		self.m_bpButton_save.SetBitmapHover( wx.NullBitmap )
+		# self.m_bpButton_save.SetBitmapHover( wx.NullBitmap )
 		self.m_bpButton_save.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_BTNFACE ) )
-		self.m_bpButton_save.SetToolTipString( u"Save graph to file" )
+		# self.m_bpButton_save.SetToolTipString( u"Save graph to file" )
 		
 		fgSizer15.Add( self.m_bpButton_save, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
 		
 		self.m_bpButton_script = wx.BitmapButton( self.m_panel16, wx.ID_ANY, wx.NullBitmap, wx.DefaultPosition, wx.Size( 50,-1 ), wx.BU_AUTODRAW|wx.NO_BORDER )
 		
 		self.m_bpButton_script.SetBitmapFocus( wx.NullBitmap )
-		self.m_bpButton_script.SetBitmapHover( wx.NullBitmap )
+		# self.m_bpButton_script.SetBitmapHover( wx.NullBitmap )
 		self.m_bpButton_script.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_BTNFACE ) )
-		self.m_bpButton_script.SetToolTipString( u"View dot script" )
+		# self.m_bpButton_script.SetToolTipString( u"View dot script" )
 		
 		fgSizer15.Add( self.m_bpButton_script, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
 		
 		self.m_bpButton_export = wx.BitmapButton( self.m_panel16, wx.ID_ANY, wx.NullBitmap, wx.DefaultPosition, wx.Size( 50,-1 ), wx.BU_AUTODRAW|wx.NO_BORDER )
 		
 		self.m_bpButton_export.SetBitmapFocus( wx.NullBitmap )
-		self.m_bpButton_export.SetBitmapHover( wx.NullBitmap )
+		# self.m_bpButton_export.SetBitmapHover( wx.NullBitmap )
 		self.m_bpButton_export.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_BTNFACE ) )
-		self.m_bpButton_export.SetToolTipString( u"Save graph to image file" )
+		# self.m_bpButton_export.SetToolTipString( u"Save graph to image file" )
 		
 		fgSizer15.Add( self.m_bpButton_export, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
 		
@@ -96,7 +96,7 @@ class MainFrame ( wx.Frame ):
 		fgSizer15.Add( self.m_button_save_as, 0, wx.ALL, 5 )
 		
 		
-		fgSizer15.AddSpacer( ( 0, 0), 1, wx.EXPAND, 5 )
+		fgSizer15.Add( ( 0, 0), 1, wx.EXPAND, 5 )
 		
 		self.m_bpButton_help = wx.BitmapButton( self.m_panel16, wx.ID_ANY, wx.NullBitmap, wx.DefaultPosition, wx.Size( 50,-1 ), wx.BU_AUTODRAW|wx.NO_BORDER )
 		self.m_bpButton_help.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_BTNFACE ) )
@@ -149,18 +149,18 @@ class MainFrame ( wx.Frame ):
 		self.m_bpButton_graphsetting = wx.BitmapButton( self.m_panel7, wx.ID_ANY, wx.NullBitmap, wx.DefaultPosition, wx.DefaultSize, wx.BU_AUTODRAW|wx.NO_BORDER )
 		
 		self.m_bpButton_graphsetting.SetBitmapFocus( wx.NullBitmap )
-		self.m_bpButton_graphsetting.SetBitmapHover( wx.NullBitmap )
+		# self.m_bpButton_graphsetting.SetBitmapHover( wx.NullBitmap )
 		self.m_bpButton_graphsetting.SetBackgroundColour( wx.Colour( 255, 255, 255 ) )
 		
 		fgSizer7.Add( self.m_bpButton_graphsetting, 0, wx.ALL, 5 )
 		
 		
-		fgSizer7.AddSpacer( ( 12, 0), 1, wx.EXPAND, 5 )
+		fgSizer7.Add( ( 12, 0), 1, wx.EXPAND, 5 )
 		
 		self.m_bpButton_add = wx.BitmapButton( self.m_panel7, wx.ID_ANY, wx.NullBitmap, wx.DefaultPosition, wx.DefaultSize, wx.BU_AUTODRAW|wx.NO_BORDER )
 		
 		self.m_bpButton_add.SetBitmapFocus( wx.NullBitmap )
-		self.m_bpButton_add.SetBitmapHover( wx.NullBitmap )
+		# self.m_bpButton_add.SetBitmapHover( wx.NullBitmap )
 		self.m_bpButton_add.SetBackgroundColour( wx.Colour( 255, 255, 255 ) )
 		
 		fgSizer7.Add( self.m_bpButton_add, 0, wx.ALL, 5 )
@@ -168,13 +168,13 @@ class MainFrame ( wx.Frame ):
 		self.m_bpButton_minus = wx.BitmapButton( self.m_panel7, wx.ID_ANY, wx.NullBitmap, wx.DefaultPosition, wx.DefaultSize, wx.BU_AUTODRAW|wx.NO_BORDER )
 		
 		self.m_bpButton_minus.SetBitmapFocus( wx.NullBitmap )
-		self.m_bpButton_minus.SetBitmapHover( wx.NullBitmap )
+		# self.m_bpButton_minus.SetBitmapHover( wx.NullBitmap )
 		self.m_bpButton_minus.SetBackgroundColour( wx.Colour( 255, 255, 255 ) )
 		
 		fgSizer7.Add( self.m_bpButton_minus, 0, wx.ALL, 5 )
 		
 		
-		fgSizer7.AddSpacer( ( 5, 0), 1, wx.EXPAND, 5 )
+		fgSizer7.Add( ( 5, 0), 1, wx.EXPAND, 5 )
 		
 		
 		self.m_panel7.SetSizer( fgSizer7 )
@@ -261,7 +261,7 @@ class MainFrame ( wx.Frame ):
 		fgSizer11.Add( self.m_staticText6, 0, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 1 )
 		
 		
-		fgSizer11.AddSpacer( ( 0, 26), 1, wx.EXPAND, 5 )
+		fgSizer11.Add( ( 0, 26), 1, wx.EXPAND, 5 )
 		
 		self.m_staticText_zoom = wx.StaticText( self.m_panel12, wx.ID_ANY, u"Zoom:100%", wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_RIGHT )
 		self.m_staticText_zoom.Wrap( -1 )
@@ -275,7 +275,7 @@ class MainFrame ( wx.Frame ):
 		fgSizer11.Add( self.m_button16, 0, wx.ALIGN_CENTER|wx.FIXED_MINSIZE, 5 )
 		
 		
-		fgSizer11.AddSpacer( ( 3, 0), 1, wx.EXPAND, 5 )
+		fgSizer11.Add( ( 3, 0), 1, wx.EXPAND, 5 )
 		
 		
 		self.m_panel12.SetSizer( fgSizer11 )
@@ -475,7 +475,7 @@ class DialogAppend ( wx.Dialog ):
 		
 		self.m_textCtrl_label = wx.TextCtrl( self.m_panel_node, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.HSCROLL|wx.TE_MULTILINE|wx.TE_WORDWRAP )
 		self.m_textCtrl_label.SetBackgroundColour( wx.Colour( 255, 255, 192 ) )
-		self.m_textCtrl_label.SetToolTipString( u"Label of node/edge/subgraph.\nJust leave empty if no label to set." )
+		# self.m_textCtrl_label.SetToolTipString( u"Label of node/edge/subgraph.\nJust leave empty if no label to set." )
 		
 		fgSizer2.Add( self.m_textCtrl_label, 0, wx.ALL|wx.EXPAND, 5 )
 		
@@ -809,10 +809,10 @@ class DialogGraphSetting ( wx.Dialog ):
 		fgSizer14.Add( self.m_choice_layout_cmd, 0, wx.ALL|wx.EXPAND, 5 )
 		
 		
-		fgSizer14.AddSpacer( ( 0, 5), 1, wx.EXPAND, 5 )
+		fgSizer14.Add( ( 0, 5), 1, wx.EXPAND, 5 )
 		
 		
-		fgSizer14.AddSpacer( ( 0, 5), 1, wx.EXPAND, 5 )
+		fgSizer14.Add( ( 0, 5), 1, wx.EXPAND, 5 )
 		
 		
 		fgSizer22.Add( fgSizer14, 1, wx.EXPAND, 5 )
@@ -961,7 +961,7 @@ class ArrowTypeDialog ( wx.Dialog ):
 		gbSizer3.Add( self.m_bitmap_preview, wx.GBPosition( 0, 0 ), wx.GBSpan( 1, 1 ), wx.ALIGN_CENTER|wx.ALL, 5 )
 		
 		
-		gbSizer3.AddSpacer( ( 0, 0 ), wx.GBPosition( 4, 1 ), wx.GBSpan( 1, 1 ), wx.EXPAND, 5 )
+		gbSizer3.Add( ( 0, 0 ), wx.GBPosition( 4, 1 ), wx.GBSpan( 1, 1 ), wx.EXPAND, 5 )
 		
 		self.m_list = wx.ListCtrl( self.m_panel26, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LC_AUTOARRANGE|wx.LC_ICON )
 		gbSizer3.Add( self.m_list, wx.GBPosition( 0, 1 ), wx.GBSpan( 4, 1 ), wx.ALIGN_CENTER|wx.ALL|wx.EXPAND, 5 )

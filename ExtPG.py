@@ -400,12 +400,12 @@ class ATDialog(ArrowTypeDialog):
         self.EndModal(wx.ID_OK)
 
 
-class DotStringProperty(wxpg.PyProperty):
+class DotStringProperty(wxpg.PGProperty):
     '''
     Why this? This class existed because the build-in wxpg.PyStringProperty not trigger event when zero-length string input. 
     '''
-    def __init__(self, label, name=wxpg.LABEL_AS_NAME, value=''):
-        wxpg.PyProperty.__init__(self, label, name)
+    def __init__(self, label, name=wxpg.PG_LABEL, value=''):
+        wxpg.PGProperty.__init__(self, label, name)
         self.SetValue(value)
         
     def GetClassName(self):
@@ -465,12 +465,11 @@ class DotFloatProperty(wxpg.PyFloatProperty):
         return c_str
     
     def DoGetValue(self):
-        
         return self.ValueToString(self.m_value, None)
 
-class DotColorSchemeProperty(wxpg.PyProperty):
-    def __init__(self, label, name=wxpg.LABEL_AS_NAME, value=''):
-        wxpg.PyProperty.__init__(self, label, name)
+class DotColorSchemeProperty(wxpg.PGProperty):
+    def __init__(self, label, name=wxpg.PG_LABEL, value=''):
+        wxpg.PGProperty.__init__(self, label, name)
         self.SetValue(value)
         self.choices = AttrsDef.E_COLORSCHEME
     
@@ -508,15 +507,15 @@ class DotColorSchemeProperty(wxpg.PyProperty):
                 
         return ok
 
-class DotColorProperty(wxpg.PyProperty):
+class DotColorProperty(wxpg.PGProperty):
     '''The value of pg should be 3 type:
         1. A color name in string.
         2. A RGB/RGBA value in tuple(r,g,b in 0~255).
         3. A int to point out the index in colorscheme. 
     '''
 
-    def __init__(self, label, name=wxpg.LABEL_AS_NAME, value=''):
-        wxpg.PyProperty.__init__(self, label, name)
+    def __init__(self, label, name=wxpg.PG_LABEL, value=''):
+        wxpg.PGProperty.__init__(self, label, name)
         self.SetValue(value)
     
     def GetClassName(self):
@@ -625,15 +624,10 @@ class DotColorProperty(wxpg.PyProperty):
     def SetChoices(self, choices):
         self.choices = choices
         
-    def DoGetValue(self):
-        c_str = self.ValueToString(self.m_value, None)
-         
-        return c_str 
-
-class DotEnumProperty(wxpg.PyProperty):
+class DotEnumProperty(wxpg.PGProperty):
     
-    def __init__(self, label, name=wxpg.LABEL_AS_NAME, value=''):
-        wxpg.PyProperty.__init__(self, label, name)
+    def __init__(self, label, name=wxpg.PG_LABEL, value=''):
+        wxpg.PGProperty.__init__(self, label, name)
         self.SetValue(value)
     
     def GetClassName(self):
@@ -653,10 +647,10 @@ class DotEnumProperty(wxpg.PyProperty):
 
         return str(value)
 
-class DotEnumCombineProperty(wxpg.PyProperty):
+class DotEnumCombineProperty(wxpg.PGProperty):
     
-    def __init__(self, label, name=wxpg.LABEL_AS_NAME, value=''):
-        wxpg.PyProperty.__init__(self, label, name)
+    def __init__(self, label, name=wxpg.PG_LABEL, value=''):
+        wxpg.PGProperty.__init__(self, label, name)
         self.SetValue(value)
         
     def GetClassName(self):
@@ -708,10 +702,10 @@ class DotEnumCombineProperty(wxpg.PyProperty):
 
         return str(value)
 
-class DotEnumNodeShapeProperty(wxpg.PyProperty):
+class DotEnumNodeShapeProperty(wxpg.PGProperty):
     
-    def __init__(self, label, name=wxpg.LABEL_AS_NAME, value=''):
-        wxpg.PyProperty.__init__(self, label, name)
+    def __init__(self, label, name=wxpg.PG_LABEL, value=''):
+        wxpg.PGProperty.__init__(self, label, name)
         self.SetValue(value)
         self.choices = AttrsDef.E_SHAPE
         
@@ -751,9 +745,9 @@ class DotEnumNodeShapeProperty(wxpg.PyProperty):
 
         return str(value)
     
-class DotEnumArrowTypeProperty(wxpg.PyProperty):
+class DotEnumArrowTypeProperty(wxpg.PGProperty):
     
-    def __init__(self, label, name=wxpg.LABEL_AS_NAME, value=''):
+    def __init__(self, label, name=wxpg.PG_LABEL, value=''):
         wxpg.PyProperty.__init__(self, label, name)
         self.SetValue(value)
         
@@ -821,7 +815,7 @@ def buildPG(attr_name, g_type):
     pg_item = pg_class(attr_name)
     
     if info['type'] in ['enum', 'enum_edit', 'enum_combine']:
-        pg_item.SetChoices(info['param'])
+        pg_item.SetChoices(wx.propgrid.PGChoices(info['param']))
     
     #elif info['type'] == 'bool':
     #    pg_item.SetEditor('CheckBox')
@@ -849,5 +843,4 @@ def buildPG(attr_name, g_type):
     pg_item.SetHelpString(info['description'])
     
     return pg_item
-    
     

@@ -118,7 +118,7 @@ class ExtGraph(pydot.Dot):
     def refresh_bitmap(self):
 
         self.write(TEMP_IMG_FILE, self.prog, 'png')
-        self.__bitmap = wx.EmptyBitmap(0,0)
+        self.__bitmap = wx.Bitmap(0,0)
         self.__bitmap.LoadFile(TEMP_IMG_FILE, wx.BITMAP_TYPE_PNG)
 
         return

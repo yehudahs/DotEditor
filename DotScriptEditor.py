@@ -102,7 +102,7 @@ class DS(DialogScript):
         except:
             pass
         
-        self.m_text_script.SetDefaultStyle(wx.TextAttr(font=ft))
+        self.m_text_script.SetDefaultStyle(wx.TextAttr())
         self.m_text_script.SetFont(ft)
         
         self.m_text_script.Bind(wx.EVT_KEY_DOWN, self.onTab)

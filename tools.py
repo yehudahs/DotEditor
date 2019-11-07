@@ -149,7 +149,7 @@ def generate_platte():
             pos_x = int((max_w-w)/2)
             pos_y = int((max_h-h)/2)
     
-            new_img = wx.EmptyImage(max_w, max_h)
+            new_img = wx.Image(max_w, max_h)
             new_img.Clear(0xff)
             new_img.Paste(img[1], pos_x, pos_y)
             new_img.SaveFile(img[0], wx.BITMAP_TYPE_PNG)
@@ -162,6 +162,5 @@ if __name__ == '__main__':
     #generate_platte()
     generate_arrowtype_images()
     pass
-    
     
     

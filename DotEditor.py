@@ -259,8 +259,8 @@ class MF(MainFrame):
         for btn_name in ['new', 'open', 'save', 'export', 'script', 'add', 'minus', 'graphsetting', 'help']:
             set_s = 'self.m_bpButton_%s.SetBitmap( wx.Bitmap( resource_path("resource/icon/%s.png"), wx.BITMAP_TYPE_ANY ) )' 
             eval(set_s%(btn_name,btn_name))
-            set_s = 'self.m_bpButton_%s.SetBitmapHover( wx.Bitmap( resource_path("resource/icon/%s-highlight.png"), wx.BITMAP_TYPE_ANY ) )' 
-            eval(set_s%(btn_name, btn_name))
+            # set_s = 'self.m_bpButton_%s.SetBitmapHover( wx.Bitmap( resource_path("resource/icon/%s-highlight.png"), wx.BITMAP_TYPE_ANY ) )'
+            # eval(set_s%(btn_name, btn_name))
         
         # Set icon.
         self.SetIcon(wx.Icon(resource_path('resource/icon/DE.ico'), wx.BITMAP_TYPE_ICO))    
@@ -291,7 +291,7 @@ class MF(MainFrame):
         for icon_name in ['node-color', 'node-gray', 'edge-color', \
                           'edge-gray', 'graph-color', 'graph-gray', \
                           'graph-expand']:
-            img = wx.EmptyBitmap(16,16)
+            img = wx.Bitmap(16,16)
             fn = resource_path('resource/icon/%s.png'%icon_name)
             img.LoadFile(fn, wx.BITMAP_TYPE_PNG)
             img_idx = iList.Add(img)
@@ -348,13 +348,13 @@ class MF(MainFrame):
     def __spread_tree(self, rootid):
         '''A  recursive function to add all data from graph into m_tree_ctrl.'''
         
-        _, graph = self.m_tree.GetItemPyData(rootid)
+        _, graph = self.m_tree.GetItemData(rootid)
         
         ### Add wildcard nodes.
         for n in ['node', 'edge']:
             n_id = self.m_tree.AppendItem(rootid, n)
             n_data = self.data_graph.EG_get_node_by_name(n, root_graph=graph)
-            self.m_tree.SetItemPyData(n_id, ('node',  n_data))
+            self.m_tree.SetItemData(n_id, ('node',  n_data))
             self.m_tree.SetItemImage(n_id, self.img_dict[(n, 'gray')])
         
         ### Load nodes.
@@ -364,7 +364,7 @@ class MF(MainFrame):
                 continue
             
             n_id = self.m_tree.AppendItem(rootid, n_name.decode('utf8'))
-            self.m_tree.SetItemPyData(n_id, ('node', n))
+            self.m_tree.SetItemData(n_id, ('node', n))
             self.m_tree.SetItemImage(n_id, self.img_dict[('node', 'color')])
             
         
@@ -373,14 +373,14 @@ class MF(MainFrame):
             n1 = remove_double_quote( e.get_source().decode('utf8') )
             n2 = remove_double_quote( e.get_destination().decode('utf8') )
             n_id = self.m_tree.AppendItem(rootid, "%s -> %s"%(n1,n2))
-            self.m_tree.SetItemPyData(n_id, ('edge', e))
+            self.m_tree.SetItemData(n_id, ('edge', e))
             self.m_tree.SetItemImage(n_id, self.img_dict[('edge', 'color')])
         
         ### Load subgraphs.
         for sg in graph.get_subgraphs():
             sg_name = remove_double_quote( sg.get_name().decode('utf8') )
             n_id = self.m_tree.AppendItem(rootid, sg_name)
-            self.m_tree.SetItemPyData(n_id, ('graph', sg))
+            self.m_tree.SetItemData(n_id, ('graph', sg))
             self.m_tree.SetItemImage(n_id, self.img_dict[('graph', 'color')])
             self.__spread_tree(n_id)
         
@@ -425,7 +425,7 @@ class MF(MainFrame):
             ### Insert wildcard item at 1st.
             g_name = remove_double_quote(self.data_graph.get_name().decode('utf8'))
             root = self.m_tree.AddRoot(g_name, 1)
-            self.m_tree.SetItemPyData(root, ('graph', self.data_graph))
+            self.m_tree.SetItemData(root, ('graph', self.data_graph))
             self.m_tree.SetItemImage(root, self.img_dict[('graph', 'color')])
             
             self.__spread_tree(root)
@@ -636,7 +636,7 @@ class MF(MainFrame):
             root_graph = i_graph
         else:
             root_id = self.m_tree.GetItemParent(i_id)
-            root_graph = self.m_tree.GetItemPyData(root_id)[1]
+            root_graph = self.m_tree.GetItemData(root_id)[1]
             
         dlg = DA(self)
         r = dlg.ShowModal()
@@ -654,7 +654,7 @@ class MF(MainFrame):
                 
                 ### Add item to tree.
                 a_id = self.m_tree.AppendItem(root_id, v[1].decode('utf8'))
-                self.m_tree.SetItemPyData(a_id, ('node', a_data))
+                self.m_tree.SetItemData(a_id, ('node', a_data))
                 self.m_tree.SetItemImage(a_id, self.img_dict[('node', 'color')])
             elif v[0] == 'edge': ### Add edge.
                 n, n1 = v[1]
@@ -666,7 +666,7 @@ class MF(MainFrame):
                     return
                 ### Add item to tree.
                 a_id = self.m_tree.AppendItem(root_id, n.decode('utf8')+' -> '+n1.decode('utf8'))
-                self.m_tree.SetItemPyData(a_id, ('edge', a_data))
+                self.m_tree.SetItemData(a_id, ('edge', a_data))
                 self.m_tree.SetItemImage(a_id, self.img_dict[('edge', 'color')])
             else: ### Add subgraph.
 
@@ -678,13 +678,13 @@ class MF(MainFrame):
                     return
                 ### Add subgraph root to tree.
                 a_id = self.m_tree.AppendItem(root_id, v[1].decode('utf8'))
-                self.m_tree.SetItemPyData(a_id, ('graph', a_data))
+                self.m_tree.SetItemData(a_id, ('graph', a_data))
                 self.m_tree.SetItemImage(a_id, self.img_dict[('graph', 'color')])
                 ### Add wildcard nodes to subgraph.
                 for n in ['node', 'edge']:
                     n_id = self.m_tree.AppendItem(a_id, n)
                     n_data = self.data_graph.EG_get_node_by_name(n, root_graph=a_data)
-                    self.m_tree.SetItemPyData(n_id, ('node', n_data) )
+                    self.m_tree.SetItemData(n_id, ('node', n_data) )
                     self.m_tree.SetItemImage(n_id, self.img_dict[(n, 'gray')])
                 self.m_tree.Expand(a_id)
             
@@ -735,7 +735,7 @@ class MF(MainFrame):
         
         # Get root of selected item.
         r_id = self.m_tree.GetItemParent(selected_id)
-        root_graph = self.m_tree.GetItemPyData(r_id)[1]
+        root_graph = self.m_tree.GetItemData(r_id)[1]
             
         if i_type == 'node':      ### Remove node from graph.
             self.data_graph.EG_remove_node(i_name, root_graph=root_graph)
@@ -765,7 +765,7 @@ class MF(MainFrame):
             return None
         
         i_name = self.m_tree.GetItemText(i).strip()
-        i_type, item = self.m_tree.GetItemPyData(i)
+        i_type, item = self.m_tree.GetItemData(i)
     
         return i_name, i_type, item
 
@@ -928,7 +928,7 @@ class MF(MainFrame):
         
         fd = wx.FileDialog(self, "Open Dot File", "", "", 
                            "Graphviz Dot Script (*.*)|*.*", 
-                           wx.OPEN|wx.FD_FILE_MUST_EXIST)
+                           wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
         if fd.ShowModal() == wx.ID_OK:
             fp = fd.GetPath()
         else:
@@ -1113,4 +1113,3 @@ if __name__ == "__main__":
     frame = MF(parent=None)
     frame.Show(True)
     app.MainLoop()
-    
